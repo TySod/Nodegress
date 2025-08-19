@@ -1,0 +1,6 @@
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  fname VARCHAR(100),
+  email VARCHAR(100),
+  age INTEGER
+);

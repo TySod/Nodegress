@@ -20,11 +20,41 @@ app.get('/', (req, res) => {
 });
 
 // CRUD API endpoints
-app.get('/users', db.getUsers);
-app.get('/users/:id', db.getUserById);
-app.post('/users', db.createUser);
-app.put('/users/:id', db.updateUser);
-app.delete('/users/:id', db.deleteUser);
+app.get('/users', async (req, res, next) => {
+    try {
+        await db.getUsers(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
+app.get('/users/:id', async (req, res, next) => {
+    try {
+        await db.getUserById(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
+app.post('/users', async (req, res, next) => {
+    try {
+        await db.createUser(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
+app.put('/users/:id', async (req, res, next) => {
+    try {
+        await db.updateUser(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
+app.delete('/users/:id', async (req, res, next) => {
+    try {
+        await db.deleteUser(req, res);
+    } catch (err) {
+        next(err);
+    }
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
